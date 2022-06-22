@@ -2,7 +2,7 @@
 
 {
   Delphi:
-  This demo show you how to copy selection data with cxGrid,
+  This demo show you how to copy cell selection with cxGrid,
   PS. I try to clone this feature like the SQL Server Management Studio
 }
 
