@@ -120,13 +120,27 @@ end;
 
 procedure TForm2.CopyPublic_ActionExecute(Sender: TObject);
 begin
-  with ((Sender as TAction).ActionComponent.GetParentComponent as TPopupMenu) do begin
-    if (PopupComponent as TcxGridSite).GridView is TcxGridDBTableView then
+  if ((Sender as TAction).ActionComponent.GetParentComponent is TPopupMenu) then
+  begin
+    with ((Sender as TAction).ActionComponent.GetParentComponent as
+      TPopupMenu) do
     begin
-      if ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView).OptionsSelection.CellSelect then
+      if not Assigned(PopupComponent) then
+        PopupComponent := ActiveControl;
+
+      if PopupComponent is TcxGridSite then
       begin
-         ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView).OptionsBehavior.CopyCaptionsToClipboard := False;
-         ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView).CopyToClipboard(False);
+        if (PopupComponent as TcxGridSite).GridView is TcxGridDBTableView then
+        begin
+          if ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView)
+            .OptionsSelection.CellSelect then
+          begin
+            ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView)
+              .OptionsBehavior.CopyCaptionsToClipboard := False;
+            ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView)
+              .CopyToClipboard(False);
+          end;
+        end;
       end;
     end;
   end;
@@ -143,13 +157,27 @@ end;
 
 procedure TForm2.CopyWithHeaderPublic_ActionExecute(Sender: TObject);
 begin
-  with ((Sender as TAction).ActionComponent.GetParentComponent as TPopupMenu) do begin
-    if (PopupComponent as TcxGridSite).GridView is TcxGridDBTableView then
+  if ((Sender as TAction).ActionComponent.GetParentComponent is TPopupMenu) then
+  begin
+    with ((Sender as TAction).ActionComponent.GetParentComponent as
+      TPopupMenu) do
     begin
-      if ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView).OptionsSelection.CellSelect then
+      if not Assigned(PopupComponent) then
+        PopupComponent := ActiveControl;
+
+      if PopupComponent is TcxGridSite then
       begin
-         ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView).OptionsBehavior.CopyCaptionsToClipboard := True;
-         ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView).CopyToClipboard(False);
+        if (PopupComponent as TcxGridSite).GridView is TcxGridDBTableView then
+        begin
+          if ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView)
+            .OptionsSelection.CellSelect then
+          begin
+            ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView)
+              .OptionsBehavior.CopyCaptionsToClipboard := True;
+            ((PopupComponent as TcxGridSite).GridView as TcxGridDBTableView)
+              .CopyToClipboard(False);
+          end;
+        end;
       end;
     end;
   end;
